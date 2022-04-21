@@ -1,8 +1,8 @@
 import { Icon } from '@iconify/react'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { CanvasContext } from './App'
 
 function Canvas({ isLoginOpen }) {
-  const [grid, setGrid] = useState(JSON.parse(localStorage.grid || "null") || Array(7).fill(0).map(() => Array(7).fill(0).map(e => "")))
   const colors = [
     "bg-rose-500",
     "bg-red-500",
@@ -33,6 +33,8 @@ function Canvas({ isLoginOpen }) {
     setGrid(newGrid);
     localStorage.grid = JSON.stringify(newGrid)
   }
+
+  const { grid, setGrid } = useContext(CanvasContext)
 
   return (
     <div className={`flex flex-col gap-8 items-center justify-center absolute top-0 transition-all duration-700 w-full h-screen ${isLoginOpen ? "left-full" : "left-0"}`}>
