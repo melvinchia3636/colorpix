@@ -1,10 +1,10 @@
 import { Icon } from "@iconify/react";
 import React, { useContext } from "react";
-import { CanvasContext } from "./App";
-import { auth } from "./firebase";
+import { CanvasContext } from "../App";
+import { auth } from "../firebase";
 
 function Navbar({ setIsLoginOpen, isLoginOpen }) {
-  const { grid, setGrid, isLoggedIn, userData, setUserData } =
+  const { setGrid, isLoggedIn, userData, setUserData, setIsSavingDialogOpen } =
     useContext(CanvasContext);
 
   return (
@@ -31,7 +31,7 @@ function Navbar({ setIsLoginOpen, isLoginOpen }) {
         </button>
         <button
           onClick={() => {
-            !isLoggedIn ? setIsLoginOpen(true) : null;
+            !isLoggedIn ? setIsLoginOpen(true) : setIsSavingDialogOpen(true);
           }}
         >
           <Icon icon="mdi:content-save" className="w-6 h-6" />
@@ -40,7 +40,7 @@ function Navbar({ setIsLoginOpen, isLoginOpen }) {
           <Icon icon="mdi:import" className="w-6 h-6" />
         </button>
         <button>
-          <Icon icon="mdi:export" className="w-6 h-6" />
+          <Icon icon="mdi:export-variant" className="w-6 h-6" />
         </button>
         <button>
           <Icon icon="mdi:cog-outline" className="w-6 h-6" />
@@ -61,7 +61,14 @@ function Navbar({ setIsLoginOpen, isLoginOpen }) {
               setUserData(null);
             }}
           >
-            <img src={userData?.photoURL} className="w-6 h-6 rounded-full" />
+            <img
+              src={
+                userData?.photoURL ||
+                "https://ui-avatars.com/api/?name=" + userData?.displayName
+              }
+              className="w-6 h-6 rounded-full"
+              referrerPolicy="no-referrer"
+            />
           </button>
         ) : (
           <button

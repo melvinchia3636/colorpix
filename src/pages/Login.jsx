@@ -1,14 +1,15 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
-import Image from "./Login.png";
+import Image from "../../assets/Login.png";
 import "animate.css";
-import { auth } from "./firebase";
+import { auth } from "../firebase";
 import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import CreateAccount from "./CreateAccount";
+import { toast } from "react-toastify";
 
 function Login({ isLoginOpen }) {
   const [showWord, setShowWord] = useState(false);
@@ -31,7 +32,7 @@ function Login({ isLoginOpen }) {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        toast.success("Welcome back, " + user.displayName + "!");
       })
       .catch((error) => {
         const errorCode = error.code;

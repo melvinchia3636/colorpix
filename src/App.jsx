@@ -1,12 +1,31 @@
 import { Icon } from "@iconify/react";
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import Canvas from "./Canvas";
+import { ToastContainer } from "react-toastify";
+import Canvas from "./components/Canvas";
 import { auth } from "./firebase";
-import Login from "./Login";
-import Navbar from "./Navbar";
+import Login from "./pages/Login";
+import Navbar from "./components/Navbar";
+import SavingDialog from "./components/SavingDialog";
 
-export const CanvasContext = createContext();
+export const CanvasContext = createContext({
+  grid:
+    JSON.parse(localStorage.grid || "null") ||
+    Array(7)
+      .fill(0)
+      .map(() =>
+        Array(7)
+          .fill(0)
+          .map((e) => "")
+      ),
+  setGrid: () => {},
+  isLoggedIn: false,
+  setIsLoggedIn: () => {},
+  userData: null,
+  setUserData: () => {},
+  isSavingDialogOpen: false,
+  setIsSavingDialogOpen: () => {},
+});
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -22,6 +41,7 @@ function App() {
   );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [isSavingDialogOpen, setIsSavingDialogOpen] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -31,7 +51,6 @@ function App() {
         setUserData(user);
       } else {
         setIsLoggedIn(false);
-        setIsLoginOpen(true);
       }
     });
   }, []);
@@ -45,12 +64,27 @@ function App() {
         setIsLoggedIn,
         userData,
         setUserData,
+        isSavingDialogOpen,
+        setIsSavingDialogOpen,
       }}
     >
       <div className="App w-screen h-screen overflow-hidden relative bg-zinc-800">
         <Canvas isLoginOpen={isLoginOpen} />
         <Navbar setIsLoginOpen={setIsLoginOpen} isLoginOpen={isLoginOpen} />
         <Login isLoginOpen={isLoginOpen} />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <SavingDialog />
       </div>
     </CanvasContext.Provider>
   );

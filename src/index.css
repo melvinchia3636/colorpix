@@ -1,10 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --toastify-color-dark: rgb(63 63 70);
+  --toastify-color-success: #84cc16;
+}
+
+.Toastify__toast-container {
+  width: auto;
+  max-width: 50vw;
+}
+
 * {
-  font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
