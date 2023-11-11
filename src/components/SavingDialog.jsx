@@ -35,8 +35,8 @@ function SavingDialog() {
               <Icon icon="mdi:close" className="w-5 h-5" />
             </button>
           </div>
-          <div className="w-full group relative flex items-center mt-8 border-2 border-zinc-500 focus-within:border-zinc-200 group rounded-md transition-all">
-            <div className="absolute top-0 left-3 bg-zinc-800 -translate-y-1/2 px-3 text-zinc-500 group-focus-within:text-zinc-200 transition-all">
+          <div className="w-full relative flex items-center mt-8 border-2 border-zinc-500 focus-within:border-zinc-200 group/input rounded-md transition-all">
+            <div className="absolute top-0 left-3 bg-zinc-800 -translate-y-1/2 px-3 text-zinc-500 group-focus-within/input:text-zinc-200 transition-all">
               Project Name
             </div>
             <input
@@ -45,29 +45,26 @@ function SavingDialog() {
             />
             <Icon
               icon="mdi:file-document"
-              className="w-6 h-6 mr-6 text-zinc-500 group-focus-within:text-white transition-all"
+              className="w-6 h-6 mr-6 text-zinc-500 group-focus-within/input:text-white transition-all"
             />
           </div>
           <div className="flex items-center justify-between mt-6">
             <p className="text-white font-medium flex items-center gap-2">
               <Icon icon="mdi:eye" className="w-5 h-5 inline-block" />
               Share to public
-              <div className="relative -mt-0.5 group" tabIndex={0}>
-                <Icon
-                  icon="mdi:information-outline"
-                  className="w-4 h-4 inline-block peer"
-                />
-                <div className="group-hover:z-10 group-focus:z-10 transition-all group-hover:delay-100 group-focus:delay-300 z-[-1]">
-                  <div className="absolute opacity-0 group-focus:opacity-100 group-hover:opacity-100 transition-opacity duration-200 -translate-x-1/2 left-1/2 -top-full -translate-y-[80%] w-64 bg-zinc-700 p-4 rounded-md shadow-lg text-zinc-200">
-                    <p className="text-sm font-semibold tracking-wide flex items-center gap-1.5">
-                      <Icon icon="mdi:eye" className="w-4 h-4 inline-block" />
-                      Share to public
-                    </p>
-                    <p className="text-xs mt-2">
-                      If you share your artwork to public, your artwork will be
-                      available for everyone to see.
-                    </p>
-                  </div>
+              <div className="relative -mt-0.5">
+                <div className="w-4 h-4 peer" tabIndex={0}>
+                  <Icon icon="mdi:information-outline" className="w-4 h-4" />
+                </div>
+                <div className="z-[-1] peer-hover:z-[9999] peer-focus:z-[9999] transition-all absolute opacity-0 peer-hover:opacity-100 peer-focus:opacity-100 duration-200 -translate-x-1/2 left-1/2 -translate-y-[120%] w-64 bg-zinc-700 p-4 rounded-md shadow-lg text-zinc-200">
+                  <p className="text-sm font-semibold tracking-wide flex items-center gap-1.5">
+                    <Icon icon="mdi:eye" className="w-4 h-4 inline-block" />
+                    Share to public
+                  </p>
+                  <p className="text-xs mt-2">
+                    If you share your artwork to public, your artwork will be
+                    available in the explore page for everyone to see.
+                  </p>
                 </div>
               </div>
             </p>

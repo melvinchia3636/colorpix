@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import React from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -40,7 +40,7 @@ function App() {
         )
   );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState();
   const [isSavingDialogOpen, setIsSavingDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function App() {
         setIsLoggedIn(true);
         setIsLoginOpen(false);
         setUserData(user);
+        console.log(user);
       } else {
         setIsLoggedIn(false);
       }
