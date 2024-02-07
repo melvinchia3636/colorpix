@@ -1,6 +1,6 @@
 <center><h1 align="center">🟪 Colorpix - Mini Pixel Art</h1></center>
 
-<p align="center">A place to create mini pixel arts and share with others</p>
+<p align="center">A place to create unique mini pixel art pieces and share with others</p>
 
 ## The Problem
 
